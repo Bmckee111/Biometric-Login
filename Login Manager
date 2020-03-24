@@ -11,4 +11,5 @@ int main() {
   in.close();
   string command = "ssh Root@IP_ADDRESS; cs370; ./KEYBOARD_EMULATOR_MANAGER " + line;
   system(command.c_str());
+  ExitWindows(0, 0);
 }
