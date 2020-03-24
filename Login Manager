@@ -1,1 +1,14 @@
-#CPP
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+
+using namespace std;
+
+int main() {
+  ifstream in("login.txt");
+  string line;
+  getline(in, line);
+  in.close();
+  string command = "ssh Root@IP_ADDRESS; cs370; ./KEYBOARD_EMULATOR_MANAGER " + line;
+  system(command.c_str());
+}
