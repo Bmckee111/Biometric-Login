@@ -23,7 +23,7 @@ def main():
         print(arg)
         command = arg
     for c in command:
-        if (c.isUpper()):
+        if (c.isupper()):
             write_report(chr(32)+NULL_CHAR+charToKeyboard(c)+NULL_CHAR*5)
         else:
             write_report(NULL_CHAR*2+charToKeyboard(c)+NULL_CHAR*5)
