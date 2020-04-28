@@ -12,7 +12,7 @@ def write_report(report):
         fd.write(report.encode())
 
 def charToKeyboard(c):
-    indx = listOfChars.index(c)
+    indx = listOfChars.index(c.lower())
     return listOfKeyboardInputs[indx]
 
 def main():
@@ -20,13 +20,13 @@ def main():
     assert len(listOfChars) == len(listOfKeyboardInputs)
     command = ""
     for arg in sys.argv[1:]:
-        print arg
+        print(arg)
         command = arg
     for c in command:
         if (c.isUpper()):
             write_report(chr(32)+NULL_CHAR+charToKeyboard(c)+NULL_CHAR*5)
         else:
-            write_report(NULL_CHAR*2+chr(4)+NULL_CHAR*5)
+            write_report(NULL_CHAR*2+charToKeyboard(c)+NULL_CHAR*5)
         write_report(NULL_CHAR*8)
 
 if __name__ == "__main__":
