@@ -4,8 +4,8 @@ import sys
 
 NULL_CHAR = chr(0)
 
-listOfChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n', '\t']
-listOfKeyboardInputs = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 43]
+listOfChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n', '\t', ' ']
+listOfKeyboardInputs = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 43, 44]
 
 def write_report(report):
     with open('/dev/hidg0', 'rb+') as fd:
@@ -24,10 +24,12 @@ def main():
         command = arg
     for c in command:
         if (c.isupper()):
-            write_report(chr(32)+NULL_CHAR+charToKeyboard(c)+NULL_CHAR*5)
+            write_report(chr(32)+NULL_CHAR+chr(charToKeyboard(c))+NULL_CHAR*5)
         else:
-            write_report(NULL_CHAR*2+charToKeyboard(c)+NULL_CHAR*5)
+            write_report(NULL_CHAR*2+chr(charToKeyboard(c))+NULL_CHAR*5)
         write_report(NULL_CHAR*8)
+    write_report(NULL_CHAR*2+chr(40)+NULL_CHAR*5)
+    write_report(NULL_CHAR*8)
 
 if __name__ == "__main__":
     main()
